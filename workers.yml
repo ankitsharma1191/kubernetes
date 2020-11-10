@@ -1,6 +1,5 @@
 ---
 - hosts: master
-  become: yes
   gather_facts: false
   tasks:
     - name: get join command
@@ -13,7 +12,6 @@
 
 
 - hosts: workers
-  become: yes
   tasks:
     - name: join cluster
       shell: "{{ hostvars['master'].join_command }} --ignore-preflight-errors all  >> node_joined.txt"
